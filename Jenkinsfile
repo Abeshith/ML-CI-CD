@@ -12,6 +12,7 @@ pipeline{
             steps {
                 script {
                     echo 'Building Docker image...'
+		    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'mlops-git', url: 'https://github.com/Abeshith/ML-CI-CD.git']])
                 }
             }
         }
