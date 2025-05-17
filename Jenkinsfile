@@ -1,5 +1,6 @@
-pipeline{
-    agent any{
+pipeline {
+    agent any
+
     environment {
         // Define environment variables here
         DOCKERHUB_CREDENTIAL_ID = 'mlops-jenkins-dockerhub-token'
@@ -8,16 +9,23 @@ pipeline{
     }
 
     stages {
-        stage('build'){
+        stage('Build') {
             steps {
                 script {
                     echo 'Building Docker image...'
-		    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'mlops-git', url: 'https://github.com/Abeshith/ML-CI-CD.git']])
+                    checkout scmGit(
+                        branches: [[name: '*/main']],
+                        extensions: [],
+                        userRemoteConfigs: [[
+                            credentialsId: 'mlops-git',
+                            url: 'https://github.com/Abeshith/ML-CI-CD.git'
+                        ]]
+                    )
                 }
             }
         }
 
-        stage('Lint Code'){
+        stage('Lint Code') {
             steps {
                 script {
                     echo 'Linting code...'
@@ -25,7 +33,7 @@ pipeline{
             }
         }
 
-        stage('Test Code'){
+        stage('Test Code') {
             steps {
                 script {
                     echo 'Testing code...'
@@ -33,7 +41,7 @@ pipeline{
             }
         }
 
-        stage ('Trivy FS Scan'){
+        stage('Trivy FS Scan') {
             steps {
                 script {
                     echo 'Running Trivy FS scan...'
@@ -41,7 +49,7 @@ pipeline{
             }
         }
 
-        stage ('Build Docker Image'){
+        stage('Build Docker Image') {
             steps {
                 script {
                     echo 'Building Docker image...'
@@ -49,7 +57,7 @@ pipeline{
             }
         }
 
-        stage ('Trivy Image Scan'){
+        stage('Trivy Image Scan') {
             steps {
                 script {
                     echo 'Running Trivy image scan...'
@@ -57,7 +65,7 @@ pipeline{
             }
         }
 
-        stage ('Push Docker Image'){
+        stage('Push Docker Image') {
             steps {
                 script {
                     echo 'Pushing Docker image to Docker Hub...'
@@ -65,7 +73,7 @@ pipeline{
             }
         }
 
-        stage ('Deploy to Kubernetes'){
+        stage('Deploy to Kubernetes') {
             steps {
                 script {
                     echo 'Deploying to Kubernetes...'
