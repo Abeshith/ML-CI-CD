@@ -25,18 +25,11 @@ pipeline {
             }
         }
 
-        stage('Lint Code') {
+        stage('Lint and Test Code') {
             steps {
                 script {
-                    echo 'Linting code...'
-                }
-            }
-        }
-
-        stage('Test Code') {
-            steps {
-                script {
-                    echo 'Testing code...'
+                    echo 'Linting and Testing code...'
+		    sh "python --version"
                 }
             }
         }
@@ -82,3 +75,4 @@ pipeline {
         }
     }
 }
+
