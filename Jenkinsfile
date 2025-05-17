@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     echo 'Linting and Testing code...'
-		    sh "python --version"
+		    sh "python3 --version"
                 }
             }
         }
