@@ -1,0 +1,75 @@
+pipeline{
+    agent any{
+    environment {
+        // Define environment variables here
+        DOCKERHUB_CREDENTIAL_ID = 'mlops-jenkins-dockerhub-token'
+        DOCKERHUB_REGISTRY = 'https://registry.hub.docker.com'
+        DOCKERHUB_REPOSITORY = 'iquantc/mlops-proj-01'
+    }
+
+    stages {
+        stage('build'){
+            steps {
+                script {
+                    echo 'Building Docker image...'
+                }
+            }
+        }
+
+        stage('Lint Code'){
+            steps {
+                script {
+                    echo 'Linting code...'
+                }
+            }
+        }
+
+        stage('Test Code'){
+            steps {
+                script {
+                    echo 'Testing code...'
+                }
+            }
+        }
+
+        stage ('Trivy FS Scan'){
+            steps {
+                script {
+                    echo 'Running Trivy FS scan...'
+                }
+            }
+        }
+
+        stage ('Build Docker Image'){
+            steps {
+                script {
+                    echo 'Building Docker image...'
+                }
+            }
+        }
+
+        stage ('Trivy Image Scan'){
+            steps {
+                script {
+                    echo 'Running Trivy image scan...'
+                }
+            }
+        }
+
+        stage ('Push Docker Image'){
+            steps {
+                script {
+                    echo 'Pushing Docker image to Docker Hub...'
+                }
+            }
+        }
+
+        stage ('Deploy to Kubernetes'){
+            steps {
+                script {
+                    echo 'Deploying to Kubernetes...'
+                }
+            }
+        }
+    }
+}
