@@ -69,6 +69,7 @@ pipeline {
             steps {
                 script {
                     echo 'Running Trivy image scan...'
+	            sh "trivy fs --format table -o trivy-fs-report.html"
                 }
             }
         }
