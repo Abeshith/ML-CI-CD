@@ -17,10 +17,10 @@ model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
 
 ## Save the model to a file
-os.makedirs('models', exist_ok=True)
+os.makedirs('model', exist_ok=True)
 
 ## Save the model using pickle
-with open('models/wine_model.pkl', 'wb') as f:
+with open('model/wine_model.pkl', 'wb') as f:
     pickle.dump(model, f)
 
-print("Model trained and saved to 'models/wine_model.pkl'")
+print("Model trained and saved to 'model/wine_model.pkl'")

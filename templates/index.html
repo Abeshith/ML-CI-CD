@@ -3,22 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iris Prediction</title>
+    <title>Wine Quality Prediction</title>
 </head>
 <body>
-    <h1>Predict the Iris Flower Class</h1>
+    <h1>Predict the Wine Class</h1>
     <form action="/predict" method="POST">
-        <label for="sepal_length">Sepal Length:</label>
-        <input type="text" id="sepal_length" name="sepal_length" required><br>
+        <label for="alcohol">Alcohol:</label>
+        <input type="text" id="alcohol" name="alcohol" required><br>
 
-        <label for="sepal_width">Sepal Width:</label>
-        <input type="text" id="sepal_width" name="sepal_width" required><br>
+        <label for="malic_acid">Malic Acid:</label>
+        <input type="text" id="malic_acid" name="malic_acid" required><br>
 
-        <label for="petal_length">Petal Length:</label>
-        <input type="text" id="petal_length" name="petal_length" required><br>
+        <label for="ash">Ash:</label>
+        <input type="text" id="ash" name="ash" required><br>
 
-        <label for="petal_width">Petal Width:</label>
-        <input type="text" id="petal_width" name="petal_width" required><br>
+        <label for="alcalinity_of_ash">Alcalinity of Ash:</label>
+        <input type="text" id="alcalinity_of_ash" name="alcalinity_of_ash" required><br>
+
+        <label for="magnesium">Magnesium:</label>
+        <input type="text" id="magnesium" name="magnesium" required><br>
+
+        <label for="total_phenols">Total Phenols:</label>
+        <input type="text" id="total_phenols" name="total_phenols" required><br>
+
+        <label for="flavanoids">Flavanoids:</label>
+        <input type="text" id="flavanoids" name="flavanoids" required><br>
+
+        <label for="nonflavanoid_phenols">Nonflavanoid Phenols:</label>
+        <input type="text" id="nonflavanoid_phenols" name="nonflavanoid_phenols" required><br>
+
+        <label for="proanthocyanins">Proanthocyanins:</label>
+        <input type="text" id="proanthocyanins" name="proanthocyanins" required><br>
+
+        <label for="color_intensity">Color Intensity:</label>
+        <input type="text" id="color_intensity" name="color_intensity" required><br>
+
+        <label for="hue">Hue:</label>
+        <input type="text" id="hue" name="hue" required><br>
+
+        <label for="od280/od315_of_diluted_wines">OD280/OD315 of Diluted Wines:</label>
+        <input type="text" id="od280/od315_of_diluted_wines" name="od280/od315_of_diluted_wines" required><br>
+
+        <label for="proline">Proline:</label>
+        <input type="text" id="proline" name="proline" required><br>
 
         <input type="submit" value="Predict">
     </form>
@@ -28,3 +55,4 @@
     {% endif %}
 </body>
 </html>
+
