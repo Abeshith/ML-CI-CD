@@ -69,16 +69,24 @@ pipeline {
             steps {
                 script {
                     echo 'Running Trivy image scan...'
-	            sh "trivy fs . --format table -o trivy-fs-report.html"
+	            sh "trivy fs ./ --format table -o trivy-fs-report.html"
                 }
             }
         }
 
-        stage('Push Docker Image') {
+        stage('Build Docker Image') {
             steps {
                 script {
-                    echo 'Pushing Docker image to Docker Hub...'
+                    echo 'Building Docker image...'
 		    docker.build("mlops-app")
+                }
+            }
+        }
+	stage('Scan Docker image with Trivy') {
+            steps {
+                script {
+                    echo 'Scanning Docker Image with Trivy...'
+		    sh 'trivy image mlops-app:latest --format table -o trivy-image-report.html'
                 }
             }
         }
