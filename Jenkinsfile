@@ -78,6 +78,7 @@ pipeline {
             steps {
                 script {
                     echo 'Pushing Docker image to Docker Hub...'
+		    docker.build("mlops-app")
                 }
             }
         }
