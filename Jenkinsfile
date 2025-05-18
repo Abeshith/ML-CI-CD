@@ -3,9 +3,9 @@ pipeline {
 
     environment {
         // Define environment variables here
-        DOCKERHUB_CREDENTIAL_ID = 'mlops-jenkins-dockerhub-token'
+        DOCKERHUB_CREDENTIAL_ID = 'docker-cred'
         DOCKERHUB_REGISTRY = 'https://registry.hub.docker.com'
-        DOCKERHUB_REPOSITORY = 'iquantc/mlops-proj-01'
+        DOCKERHUB_REPOSITORY = 'abeshith/mlops-app'
 	PATH = "${env.HOME}/.local/bin:${env.PATH}"
     }
 
@@ -62,7 +62,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building Docker image...'
-		    docker.build("mlops-app")
+		    dockerImage = docker.build("${DOCKERHUB_REPOSITORY}:latest")
                 }
             }
         }
@@ -71,7 +71,18 @@ pipeline {
             steps {
                 script {
                     echo 'Scanning Docker Image with Trivy...'
-		    sh 'trivy image mlops-app:latest --format table -o trivy-image-report.html'
+		    sh 'trivy image ${DOCKERHUB_REPOSITORY}:latest --format table -o trivy-image-report.html'
+                }
+            }
+        }
+	
+	stage('Push Docker Image') {
+            steps {
+                script {
+                    echo 'Pushing Docker image...'
+                    docker.withRegistry("${DOCKERHUB_REGISTRY}","${DOCKERHUB_CREDENTIAL_ID}"){
+			dockerImage.push('latest')
+		    }
                 }
             }
         }
