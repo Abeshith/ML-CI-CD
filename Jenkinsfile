@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     echo 'Linting and Testing code...'
-		    sh "python3 -m pip3 install --break-system-packages -r  requiements.txt"
+		    sh "python3 -m pip install --break-system-packages -r  requiements.txt"
                 }
             }
         }
