@@ -49,22 +49,6 @@ pipeline {
             }
         }
 
-        stage('Trivy FS Scan') {
-            steps {
-                script {
-                    echo 'Running Trivy FS scan...'
-                }
-            }
-        }
-
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    echo 'Building Docker image...'
-                }
-            }
-        }
-
         stage('Trivy Image Scan') {
             steps {
                 script {
@@ -82,6 +66,7 @@ pipeline {
                 }
             }
         }
+
 	stage('Scan Docker image with Trivy') {
             steps {
                 script {
