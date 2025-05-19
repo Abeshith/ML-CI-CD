@@ -87,11 +87,11 @@ pipeline {
             }
         }
 
-        stage('Deploy to Kubernetes') {
+        stage('Deploy to AWS ECS') {
             steps {
                 script {
-                    echo 'Deploying to Kubernetes...'
-		    sh "aws ecs update-service --cluster mlops-demo --service demo-ecs-example-service-21opj18g --force-new-deployment"
+                    echo 'Deploying to Amazon Elastic Container Services...'
+		    sh "aws ecs update-service --cluster <cluster_name> --service <service_name> --force-new-deployment"
                 }
             }
         }
