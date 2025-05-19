@@ -91,6 +91,7 @@ pipeline {
             steps {
                 script {
                     echo 'Deploying to Kubernetes...'
+		    sh "aws ecs update-service --cluster mlops-demo --service demo-ecs-example-service-21opj18g --force-new-deployment"
                 }
             }
         }
