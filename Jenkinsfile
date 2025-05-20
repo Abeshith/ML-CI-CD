@@ -10,10 +10,10 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
                 script {
-                    echo 'Building Docker image...'
+                    echo 'Checkout SCM...'
                     checkout scmGit(
                         branches: [[name: '*/main']],
                         extensions: [],
